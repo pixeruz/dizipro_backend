@@ -3,6 +3,8 @@ const CountryModel = require("../../models/CountryModel");
 const init = require("./init");
 const { sequelizeJoi, Joi } = require("sequelize-joi");
 const { CustomError } = require("../../helpers/CustomError");
+const UserModel = require("../../models/UserModel");
+const Relations = require("../../models/Relations");
 
 if (!process.env.PG_CONNECTION_URL) {
 	throw new Error("PG CONNECTION STRING NOT FOUND");
@@ -26,6 +28,10 @@ module.exports = async function pg() {
 			Joi,
 			CustomError
 		);
+
+		db.users = await UserModel(sequelize, Sequelize, Joi, CustomError);
+
+		await Relations(db);
 
 		await sequelize.sync({ force: false });
 
