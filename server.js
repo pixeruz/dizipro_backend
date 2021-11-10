@@ -6,6 +6,7 @@ const {
 const Routes = require("./routes");
 const app = express();
 const pg = require("./modules/pg/pg");
+const { errorHandlerMiddleware } = require("./helpers/CustomError");
 const PORT = process.env.PORT || 8080;
 
 async function server() {
@@ -19,7 +20,9 @@ async function server() {
 			next();
 		});
 		app.use(customErrorMiddleware);
+
 		app.use("/v1", Routes);
+		app.use(errorHandlerMiddleware);
 	} catch (error) {
 		console.log("SERVER_ERROR:", error);
 	}
