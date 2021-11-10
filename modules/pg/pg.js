@@ -4,6 +4,7 @@ const init = require("./init");
 const { CustomError } = require("../../helpers/CustomError");
 const UserModel = require("../../models/UserModel");
 const Relations = require("../../models/Relations");
+const UserSessionsModel = require("../../models/UserSessionsModel");
 
 if (!process.env.PG_CONNECTION_URL) {
 	throw new Error("PG CONNECTION STRING NOT FOUND");
@@ -20,8 +21,8 @@ module.exports = async function pg() {
 		let db = {};
 
 		db.countries = await CountryModel(sequelize, Sequelize);
-
 		db.users = await UserModel(sequelize, Sequelize);
+		db.sessions = await UserSessionsModel(sequelize, Sequelize);
 
 		await Relations(db);
 
