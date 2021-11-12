@@ -24,6 +24,7 @@ module.exports = class UserController {
 
 			const token = createToken({
 				session_id: session.dataValues.session_id,
+				role: "user",
 			});
 
 			await res.status(201).json({
@@ -87,6 +88,7 @@ module.exports = class UserController {
 
 			const token = createToken({
 				session_id: session.dataValues.session_id,
+				role: user.dataValues.user_role || "user",
 			});
 
 			await req.db.attempts.destroy({

@@ -32,7 +32,7 @@ module.exports = async function pg() {
 
 		// await sequelize.sync({ force: true });
 
-		await init(db);
+		// await init(db);
 
 		return db;
 	} catch (error) {
