@@ -1,16 +1,17 @@
 const nodemailer = require("nodemailer");
 
 async function sendEmail(mailTo, html) {
-	const transport = nodemailer.createTransport({
-		auth: {
-			user: process.env.MAIL_ADDRESS,
-			pass: process.env.MAIL_PASSWORD,
-		},
-		host: "smtp.mail.ru",
-		port: 465,
-	});
+	const testAccount = await nodemailer.createTestAccount();
 
-	console.log(transport);
+	const transport = nodemailer.createTransport({
+		host: "smtp.ethereal.email",
+		port: 587,
+		secure: false, // true for 465, false for other ports
+		auth: {
+			user: testAccount.user, // generated ethereal user
+			pass: testAccount.pass, // generated ethereal password
+		},
+	});
 
 	let info = await transport.sendMail({
 		from: `"Dizipro" <${process.env.MAIL_ADDRESS}>`, // sender address
