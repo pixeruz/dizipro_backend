@@ -8,5 +8,6 @@ AdminRouter.use([AuthMiddleware, AdminMiddleware]);
 
 AdminRouter.post("/bans", AdminController.CreateBanPostController);
 AdminRouter.delete("/bans/:ban_id", AdminController.DeleteBanController);
+AdminRouter.get("/users", AdminController.GetAllUsersController);
 
 module.exports = AdminRouter;
