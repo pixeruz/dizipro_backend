@@ -23,4 +23,20 @@ module.exports = class SkillsController {
 			next(error);
 		}
 	}
+
+	static async SkillsGetController(req, res, next) {
+		try {
+			const skills = await req.db.skills.findAll();
+
+			res.json({
+				ok: true,
+				message: "OK",
+				data: {
+					skills,
+				},
+			});
+		} catch (error) {
+			next(error);
+		}
+	}
 };

@@ -7,5 +7,6 @@ const SkillRouter = require("express").Router();
 SkillRouter.use(AuthMiddleware);
 
 SkillRouter.post("/", AdminMiddleware, SkillController.AddSkillPostController);
+SkillRouter.get("/", SkillController.SkillsGetController);
 
 module.exports = SkillRouter;
