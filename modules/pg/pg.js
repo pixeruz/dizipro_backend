@@ -39,10 +39,11 @@ module.exports = async function pg() {
 		db.projects_skills = await ProjectsSkillModel(sequelize, Sequelize);
 		db.projects_softwares = await ProjectsSoftwares(sequelize, Sequelize);
 		db.projects_files = await ProjectsFilesModel(sequelize, Sequelize);
+		db.sequelize = sequelize;
 
 		await Relations(db);
 
-		// await sequelize.sync({ force: true });
+		await sequelize.sync({ force: false });
 
 		await init(db);
 
