@@ -42,9 +42,9 @@ module.exports = async function pg() {
 
 		await Relations(db);
 
-		await sequelize.sync({ force: false });
+		// await sequelize.sync({ force: true });
 
-		// await init(db);
+		await init(db);
 
 		return db;
 	} catch (error) {
