@@ -13,6 +13,7 @@ const ProjectModel = require("../../models/ProjectModel");
 const ProjectsSkillModel = require("../../models/ProjectsSkillModel");
 const ProjectsSoftwares = require("../../models/ProjectsSoftwares");
 const ProjectsFilesModel = require("../../models/ProjectsFilesModel");
+const PaymentModel = require("../../models/PaymentModel");
 
 if (!process.env.PG_CONNECTION_URL) {
 	throw new Error("PG CONNECTION STRING NOT FOUND");
@@ -39,6 +40,7 @@ module.exports = async function pg() {
 		db.projects_skills = await ProjectsSkillModel(sequelize, Sequelize);
 		db.projects_softwares = await ProjectsSoftwares(sequelize, Sequelize);
 		db.projects_files = await ProjectsFilesModel(sequelize, Sequelize);
+		db.payments = await PaymentModel(sequelize, Sequelize);
 		db.sequelize = sequelize;
 
 		await Relations(db);
