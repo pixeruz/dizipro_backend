@@ -27,5 +27,11 @@ module.exports = async (sequelize, Sequelize) => {
 			values: ["USD", "EUR", "RUB", "UZS"],
 			allowNull: false,
 		},
+		project_status: {
+			type: Sequelize.ENUM,
+			values: ["waiting", "inprogress", "finished"],
+			defaultValue: "waiting",
+			allowNull: false,
+		},
 	});
 };
