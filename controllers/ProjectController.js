@@ -7,7 +7,7 @@ module.exports = class ProjectsController {
 
 		try {
 			if (!(req.body?.project_skills && req.body?.project_softwares)) {
-				throw res.error(400, "Bad request");
+				throw new res.error(400, "Bad request");
 			}
 
 			const data = await ProjectValidations.ProjectCreateValidation(
@@ -60,7 +60,7 @@ module.exports = class ProjectsController {
 
 			let files = req.files?.files;
 
-			if (!Array.isArray(files)) {
+			if (!Array.isArray(files) && files) {
 				files = [req.files?.files];
 			}
 

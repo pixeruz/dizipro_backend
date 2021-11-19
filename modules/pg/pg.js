@@ -54,3 +54,6 @@ module.exports = async function pg() {
 		console.log("SQL_ERROR:", error);
 	}
 };
+
+// 947730a1-3090-49be-8447-dee912e3e6ad
+// 5a63a166-d6c4-4b6c-baf3-a853affbb332
