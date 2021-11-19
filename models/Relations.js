@@ -138,4 +138,18 @@ module.exports = async function (db) {
 			allowNull: false,
 		},
 	});
+
+	await db.projects.hasMany(db.payments, {
+		foreignKey: {
+			name: "project_id",
+			allowNull: false,
+		},
+	});
+
+	await db.payments.belongsTo(db.projects, {
+		foreignKey: {
+			name: "project_id",
+			allowNull: false,
+		},
+	});
 };
