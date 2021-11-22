@@ -17,21 +17,24 @@ module.exports = async function AuthMiddleware(req, res, next) {
 			},
 			include: {
 				model: req.db.users,
-				include: {
-					model: req.db.user_bans,
-					where: {
-						ban_expire_date: {
-							[Op.gt]: new Date(),
-						},
-					},
-				},
 			},
 			raw: true,
 		});
 
 		if (!session) throw new res.error(401, "Unauthorized");
 
-		if (session["user.user_bans.ban_expire_date"]) {
+		const bans = await req.db.user_bans.findOne({
+			where: {
+				ban_expire_date: {
+					[Op.gt]: new Date(),
+				},
+				user_id: session.user_id,
+			},
+		});
+
+		console.log(bans);
+
+		if (bans) {
 			res.json({
 				ok: true,
 				message: "You are banned",

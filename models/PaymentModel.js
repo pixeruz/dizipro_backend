@@ -29,11 +29,11 @@ module.exports = async (sequelize, Sequelize) => {
 		},
 		payment_bill_id: {
 			type: Sequelize.INTEGER,
-			allowNull: false,
+			allowNull: true,
 		},
 		payment_pay_url: {
 			type: Sequelize.STRING,
-			allowNull: false,
+			allowNull: true,
 		},
 	});
 };
