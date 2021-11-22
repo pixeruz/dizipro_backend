@@ -1,9 +1,9 @@
-require("dotenv").config();
 const axios = require("axios").default;
 
 class OSON_API {
-	constructor(API_KEY) {
+	constructor(API_KEY, MERCHANT_ID) {
 		this.API_KEY = API_KEY;
+		this.MERCHANT_ID = MERCHANT_ID;
 	}
 
 	async createInvoice(
@@ -25,7 +25,7 @@ class OSON_API {
 			},
 			method: "POST",
 			data: {
-				merchant_id: 1474,
+				merchant_id: this.MERCHANT_ID,
 				transaction_id,
 				amount,
 				currency,
@@ -50,7 +50,7 @@ class OSON_API {
 			},
 			method: "POST",
 			data: {
-				merchant_id: 1474,
+				merchant_id: this.MERCHANT_ID,
 				transaction_id,
 			},
 		});
