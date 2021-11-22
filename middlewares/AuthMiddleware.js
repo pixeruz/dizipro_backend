@@ -32,8 +32,6 @@ module.exports = async function AuthMiddleware(req, res, next) {
 			},
 		});
 
-		console.log(bans);
-
 		if (bans) {
 			res.json({
 				ok: true,

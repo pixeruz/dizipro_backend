@@ -20,8 +20,6 @@ async function sendEmail(mailTo, html) {
 		html, // html body
 	});
 
-	console.log(info);
-
 	return info;
 }
 

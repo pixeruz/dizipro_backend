@@ -69,12 +69,6 @@ module.exports = class PaymentController {
 				throw new res.error(400, "Payment failed");
 			}
 
-			console.log(
-				new_payment.data.bill_id,
-				new_payment.data.pay_url,
-				payment.dataValues.payment_id
-			);
-
 			await req.db.payments.update(
 				{
 					payment_bill_id: new_payment.data.bill_id,
@@ -97,7 +91,6 @@ module.exports = class PaymentController {
 				},
 			});
 		} catch (error) {
-			console.log(error);
 			await tr.rollback();
 			next(error);
 		}
